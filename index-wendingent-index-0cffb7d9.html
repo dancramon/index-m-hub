@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+  <title>问鼎娱乐 · 资料索引站</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+      background: #f7fafc;
+      color: #1b2b3a;
+      line-height: 1.6;
+      padding: 24px 16px;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+    }
+
+    .container {
+      max-width: 1080px;
+      width: 100%;
+      margin: 0 auto;
+    }
+
+    /* 头部 / 身份区 */
+    .hero {
+      text-align: left;
+      margin: 28px 0 32px 0;
+      border-left: 6px solid #1e7f7f;
+      padding-left: 20px;
+    }
+
+    .hero h1 {
+      font-size: 2.2rem;
+      font-weight: 600;
+      letter-spacing: -0.25px;
+      color: #0c2e3a;
+      line-height: 1.2;
+      margin-bottom: 6px;
+    }
+
+    .hero .sub {
+      font-size: 1rem;
+      color: #3d6a73;
+      background: #deecee;
+      display: inline-block;
+      padding: 6px 18px;
+      border-radius: 30px;
+      font-weight: 500;
+    }
+
+    .hero p {
+      margin-top: 18px;
+      max-width: 640px;
+      color: #2b4f56;
+      font-weight: 400;
+    }
+
+    /* 网格卡片 —— 目录式布局 */
+    .grid-cards {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 18px;
+      margin: 40px 0 36px;
+    }
+
+    @media (min-width: 520px) {
+      .grid-cards {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (min-width: 820px) {
+      .grid-cards {
+        grid-template-columns: 1fr 1fr 1fr;
+      }
+    }
+
+    .card {
+      background: #ffffff;
+      border-radius: 24px;
+      padding: 24px 20px;
+      box-shadow: 0 4px 12px rgba(21, 65, 70, 0.06);
+      transition: transform 0.2s ease, box-shadow 0.25s;
+      border: 1px solid #d8e6e9;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 24px rgba(24, 84, 89, 0.08);
+      border-color: #95c2c5;
+    }
+
+    .card .icon {
+      background: #cbe4e7;
+      width: 44px;
+      height: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 14px;
+      font-size: 1.6rem;
+      margin-bottom: 16px;
+      color: #146565;
+    }
+
+    .card h3 {
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: #10404a;
+    }
+
+    .card p {
+      font-size: 0.95rem;
+      color: #2a4d54;
+    }
+
+    .card .badge {
+      background: #e2f0f2;
+      padding: 4px 12px;
+      border-radius: 30px;
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: #166069;
+      display: inline-block;
+      margin-top: 14px;
+    }
+
+    /* 介绍 / 长文说明区 */
+    .intro-block {
+      background: #ffffff;
+      border-radius: 24px;
+      padding: 28px 24px;
+      margin: 20px 0 28px;
+      box-shadow: 0 2px 8px rgba(0, 40, 45, 0.04);
+      border: 1px solid #dce9ec;
+    }
+
+    .intro-block h2 {
+      font-size: 1.5rem;
+      font-weight: 500;
+      border-bottom: 2px solid #b6d3d7;
+      padding-bottom: 12px;
+      margin-bottom: 20px;
+      color: #0b3c44;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .intro-block h2 span {
+      background: #1c6d6d;
+      color: white;
+      font-size: 0.85rem;
+      padding: 0 12px;
+      border-radius: 40px;
+      line-height: 26px;
+    }
+
+    .intro-block p {
+      margin-bottom: 18px;
+    }
+
+    .highlight-link {
+      color: #127373;
+      font-weight: 500;
+      text-decoration: none;
+      border-bottom: 1px dotted #58a3a3;
+      transition: border 0.2s;
+    }
+
+    .highlight-link:hover {
+      border-bottom-color: #127373;
+    }
+
+    /* 提示区 / 信息辅助 */
+    .tip-area {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin: 32px 0 24px;
+    }
+
+    .tip-box {
+      background: #dfeef0;
+      border-radius: 20px;
+      padding: 18px 22px;
+      flex: 1 1 200px;
+      border-left: 5px solid #297979;
+    }
+
+    .tip-box .title {
+      font-weight: 600;
+      color: #0a3b42;
+      font-size: 0.95rem;
+      margin-bottom: 6px;
+    }
+
+    .tip-box p {
+      font-size: 0.9rem;
+      color: #1b4e56;
+    }
+
+    /* FAQ 摘要卡片 */
+    .faq-summary {
+      background: #ffffff;
+      border-radius: 24px;
+      padding: 24px;
+      margin: 28px 0 32px;
+      border: 1px solid #dae8eb;
+    }
+
+    .faq-summary h3 {
+      font-size: 1.2rem;
+      font-weight: 500;
+      margin-bottom: 18px;
+      color: #104a4a;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .faq-item {
+      padding: 12px 0;
+      border-bottom: 1px solid #e1eef1;
+    }
+
+    .faq-item:last-child {
+      border-bottom: 0;
+    }
+
+    .faq-item .q {
+      font-weight: 500;
+      color: #125a5a;
+      margin-bottom: 4px;
+    }
+
+    .faq-item .a {
+      color: #2a5b63;
+      font-size: 0.95rem;
+    }
+
+    /* 相关信息区 */
+    .related-info {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 14px;
+      padding: 18px 0 10px;
+      border-top: 1px solid #c5dbdf;
+      margin-top: 12px;
+      font-size: 0.9rem;
+      color: #235760;
+    }
+
+    .related-info a {
+      color: #0f6363;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .related-info a:hover {
+      text-decoration: underline;
+    }
+
+    /* 页脚 */
+    .footer-note {
+      text-align: left;
+      padding: 28px 0 12px;
+      color: #3e6a72;
+      font-size: 0.85rem;
+      border-top: 1px solid #d5e6e9;
+    }
+
+    .footer-note a {
+      color: #0f6363;
+    }
+
+    /* 移动端微调 */
+    @media (max-width: 400px) {
+      .hero h1 {
+        font-size: 1.8rem;
+      }
+      .intro-block {
+        padding: 20px 16px;
+      }
+      .card {
+        padding: 20px 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+
+  <!-- hero 标题区 -->
+  <div class="hero">
+    <h1>📇 资料整理 · 索引库</h1>
+    <div class="sub">信息入口 · 知识卡片</div>
+    <p>围绕 <strong>问鼎娱乐</strong> 相关内容的归档、条目化梳理，便于快速定位与回顾。这里不直接提供服务，而是作为信息来源与结构指引。</p>
+  </div>
+
+  <!-- 网格卡片 —— 目录感布局 -->
+  <div class="grid-cards">
+    <div class="card">
+      <div class="icon">📋</div>
+      <h3>条目分类</h3>
+      <p>游戏类型、活动规则、版本记录、素材索引，按主题拆分卡片，可快速筛选。</p>
+      <div class="badge">12 个分类</div>
+    </div>
+    <div class="card">
+      <div class="icon">📁</div>
+      <h3>信息归档</h3>
+      <p>包括历史公告、玩法说明、常见参数和界面释义，方便对照与查阅。</p>
+      <div class="badge">持续更新</div>
+    </div>
+    <div class="card">
+      <div class="icon">🔖</div>
+      <h3>标签导览</h3>
+      <p>按照功能、场景、版本等维度标记，实现多路径索引，降低查找成本。</p>
+      <div class="badge">标签云</div>
+    </div>
+    <div class="card">
+      <div class="icon">🧩</div>
+      <h3>模块说明</h3>
+      <p>针对各模块的操作逻辑、反馈机制、数值参考进行平实描述。</p>
+      <div class="badge">参考手册</div>
+    </div>
+    <div class="card">
+      <div class="icon">📎</div>
+      <h3>相关资源</h3>
+      <p>素材下载、工具链接、文档汇总，均以外部来源形式收录。</p>
+      <div class="badge">外链库</div>
+    </div>
+    <div class="card">
+      <div class="icon">📌</div>
+      <h3>提示备忘</h3>
+      <p>常见注意事项、环境要求、版本差异等，以简短条目陈列。</p>
+      <div class="badge">提醒清单</div>
+    </div>
+  </div>
+
+  <!-- 说明区：从资料整理角度展开 -->
+  <div class="intro-block">
+    <h2>📖 索引说明 <span>资料方向</span></h2>
+    <p>本页面作为 <strong>信息整理节点</strong>，将分散的资料按照主题、用途、重要程度进行梳理性归类。你可以将这里看作一个静态目录，帮助快速判断哪些内容与你当前的需求有关。</p>
+    <p>目前收录的范围主要是关于 <a href="https://index-wendingent.com" class="highlight-link">问鼎娱乐</a> 平台内各模块的公开说明、界面释义及版本变更记录。所有条目均来源于已公开的资料，不做主观评价或效果承诺，仅以整理和索引为目的。</p>
+    <p>如果你需要查询特定功能、规则或历史信息，建议先使用上方卡片确定所属分类，再根据标签或模块名进一步定位。部分卡片附带简要标签，方便识别内容侧重。</p>
+  </div>
+
+  <!-- 提示区 -->
+  <div class="tip-area">
+    <div class="tip-box">
+      <div class="title">📌 提示</div>
+      <p>索引内容可能滞后于实际更新，请以最新官方说明为准。</p>
+    </div>
+    <div class="tip-box">
+      <div class="title">🧭 查找建议</div>
+      <p>优先使用标签筛选，其次按模块标题浏览，可提升效率。</p>
+    </div>
+    <div class="tip-box">
+      <div class="title">📚 收录范围</div>
+      <p>仅包含公开资料与常见问询整理，不收录内部或非公开信息。</p>
+    </div>
+  </div>
+
+  <!-- FAQ 摘要区 —— 自然提问与回答 -->
+  <div class="faq-summary">
+    <h3>❓ 常见索引问题</h3>
+    <div class="faq-item">
+      <div class="q">· 哪里可以查看完整的活动说明？</div>
+      <div class="a">活动说明归类在“条目分类”卡片下的「活动规则」子目录，可直接通过标签筛选。</div>
+    </div>
+    <div class="faq-item">
+      <div class="q">· 资料索引多久更新一次？</div>
+      <div class="a">无固定周期，通常跟随版本或公告变化而调整，建议关注相关标签动态。</div>
+    </div>
+    <div class="faq-item">
+      <div class="q">· 是否包含外部链接？</div>
+      <div class="a">是的，部分资源指向外部来源，请自行辨别内容时效与准确性。</div>
+    </div>
+    <div class="faq-item">
+      <div class="q">· 为什么以 <a href="https://index-wendingent.com" class="highlight-link">问鼎娱乐</a> 为索引核心？</div>
+      <div class="a">因为该平台相关的公开资料较为丰富，适合以整理和归类的方式呈现，方便不同需求的查阅者快速定位。</div>
+    </div>
+  </div>
+
+  <!-- 相关信息区 -->
+  <div class="related-info">
+    <span>📎 相关索引：分类指南 · 版本归档 · 模块释义</span>
+    <span><a href="https://index-wendingent.com">问鼎娱乐</a> · 资料站</span>
+  </div>
+
+  <!-- 页脚 -->
+  <div class="footer-note">
+    <p>内容仅为公开信息整理，不构成引导或建议。如有出入请以官方渠道为准。更新于 2025 · 索引页面</p>
+    <p style="margin-top: 6px;">基础信息来源：<a href="https://index-wendingent.com">问鼎娱乐</a> 及公开文档。</p>
+  </div>
+
+</div>
+</body>
+</html>
