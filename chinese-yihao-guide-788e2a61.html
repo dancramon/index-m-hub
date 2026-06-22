@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5">
+  <title>壹号娱乐 · 日常查询与延伸阅读</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+      background: #f4f6f7;
+      color: #2d3436;
+      line-height: 1.6;
+      padding: 1.5rem 1rem;
+    }
+
+    .page {
+      max-width: 1120px;
+      margin: 0 auto;
+    }
+
+    /* 卡片通用设计 */
+    .card {
+      background: #ffffff;
+      border: 1px solid #e3e9ed;
+      border-radius: 18px;
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.03), 0 4px 8px rgba(0, 0, 0, 0.02);
+      padding: 2rem 1.8rem;
+      transition: box-shadow 0.2s ease;
+    }
+    .card:hover {
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04), 0 2px 8px rgba(0, 0, 0, 0.03);
+    }
+
+    /* hero 区 */
+    .hero {
+      background: #ffffff;
+      border-radius: 28px;
+      padding: 3.2rem 1.8rem;
+      margin-bottom: 2.5rem;
+      border: 1px solid #e1e8ed;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.02);
+      text-align: center;
+    }
+    .hero h1 {
+      font-size: 2.4rem;
+      font-weight: 500;
+      letter-spacing: -0.02em;
+      color: #1e272e;
+      margin-bottom: 0.6rem;
+    }
+    .hero .tagline {
+      font-size: 1.2rem;
+      color: #576574;
+      max-width: 640px;
+      margin: 0.2rem auto 1.6rem;
+      font-weight: 350;
+    }
+    .hero-text {
+      max-width: 700px;
+      margin: 0 auto;
+      font-size: 1rem;
+      color: #3d4a54;
+    }
+    .hero-text a {
+      color: #2563eb;
+      text-decoration: none;
+      font-weight: 450;
+      border-bottom: 1px solid #b0c9f0;
+    }
+    .hero-text a:hover {
+      border-bottom-color: #2563eb;
+    }
+
+    /* 网格布局 */
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.8rem;
+      margin: 2.2rem 0;
+    }
+
+    .section-label {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: #8f9aa8;
+      margin-bottom: 0.75rem;
+      font-weight: 500;
+    }
+
+    .card h2 {
+      font-size: 1.4rem;
+      font-weight: 480;
+      margin-bottom: 1rem;
+      color: #1e272e;
+    }
+    .card p {
+      margin-bottom: 1rem;
+      color: #3d4a54;
+    }
+    .card p:last-child {
+      margin-bottom: 0;
+    }
+
+    .feature-list {
+      list-style: none;
+      padding: 0;
+      margin: 0.8rem 0 0.2rem;
+    }
+    .feature-list li {
+      padding: 0.5rem 0 0.5rem 1.8rem;
+      position: relative;
+      color: #2d3436;
+      border-bottom: 1px solid #f0f3f5;
+    }
+    .feature-list li:last-child {
+      border-bottom: none;
+    }
+    .feature-list li::before {
+      content: "▹";
+      position: absolute;
+      left: 0;
+      color: #4870b0;
+      font-size: 1.2rem;
+    }
+
+    .faq-item {
+      padding: 1rem 0;
+      border-bottom: 1px solid #edf2f5;
+    }
+    .faq-item:last-child {
+      border-bottom: none;
+    }
+    .faq-q {
+      font-weight: 500;
+      margin-bottom: 0.25rem;
+      color: #1e272e;
+    }
+    .faq-a {
+      color: #4d5a65;
+      font-size: 0.95rem;
+    }
+
+    /* 底部链接 */
+    .footer-note {
+      margin-top: 3rem;
+      padding: 1.6rem 0 0.4rem;
+      border-top: 1px solid #dce3e8;
+      text-align: center;
+      font-size: 0.95rem;
+      color: #5e6b76;
+    }
+    .footer-note a {
+      color: #2563eb;
+      text-decoration: none;
+      border-bottom: 1px solid #c5d6f2;
+    }
+    .footer-note a:hover {
+      border-bottom-color: #2563eb;
+    }
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.6rem 1.2rem;
+      margin-bottom: 0.8rem;
+    }
+    .footer-links a {
+      color: #3e515e;
+      text-decoration: none;
+      font-size: 0.9rem;
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.2s;
+    }
+    .footer-links a:hover {
+      border-bottom-color: #6f8fb2;
+    }
+
+    /* 响应式 */
+    @media (max-width: 768px) {
+      body {
+        padding: 1rem 0.8rem;
+      }
+      .hero h1 {
+        font-size: 1.8rem;
+      }
+      .hero .tagline {
+        font-size: 1rem;
+      }
+      .grid-2 {
+        grid-template-columns: 1fr;
+        gap: 1.4rem;
+      }
+      .card {
+        padding: 1.5rem 1.2rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero {
+        padding: 2rem 1rem;
+      }
+      .footer-links {
+        flex-direction: column;
+        gap: 0.4rem;
+      }
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <!-- hero 区 -->
+  <header class="hero">
+    <h1>日常查询 · 对照 · 延伸</h1>
+    <div class="tagline">从随手翻阅到耐心比较，一条线索带出更多内容。</div>
+    <div class="hero-text">
+      无论是检索兴趣、了解资讯，还是想找一处可以安静对照参考的页面，<br>
+      <a href="https://chinese-yihao.com">壹号娱乐</a> 都为你保留了清晰的信息入口。
+    </div>
+  </header>
+
+  <!-- 优势区 + 说明区 两栏布局 -->
+  <div class="grid-2">
+
+    <!-- 优势区 -->
+    <section class="card">
+      <div class="section-label">优势 · 点滴</div>
+      <h2>为什么选择这里</h2>
+      <ul class="feature-list">
+        <li>内容分类直观，适合随手翻阅与对照</li>
+        <li>页面结构稳定，减少跳转负担，专注阅读</li>
+        <li>交互克制克制，把空间留给信息本身</li>
+        <li>日常更新，保持节奏，不堆砌冗余</li>
+        <li>多样视角，兼顾查询和延伸的需要</li>
+      </ul>
+    </section>
+
+    <!-- 说明区 -->
+    <section class="card">
+      <div class="section-label">说明 · 场景</div>
+      <h2>从查询到延伸</h2>
+      <p>打开一个页面，有时只是为了快速定位某个说法，有时则希望顺着内容再走远一点。<a href="https://chinese-yihao.com">壹号娱乐</a> 在两者之间寻找平衡——不打断浏览节奏，也不让信息沉没。</p>
+      <p>你可以将它当作一个日常起点：先做快速对照，再决定是否深入。无关紧迫，只是多一个安静的参考坐标。</p>
+    </section>
+  </div>
+
+  <!-- 额外说明卡片：延伸阅读的角度 -->
+  <section class="card" style="margin: 1.8rem 0;">
+    <div class="section-label">延伸阅读</div>
+    <h2>对照与发散</h2>
+    <p>在信息碎片之间，保留一点对照的习惯。把相似的条目放在一起看，差异往往比结论更有启发。而延伸阅读不是堆叠链接，是顺着一个线索找到相邻的话题。</p>
+    <p>比如当你看到某个分类时，可以顺手翻翻其他相关页面，也许会发现意料之外的关联。<a href="https://chinese-yihao.com">壹号娱乐</a> 的布局恰好支持这种轻量的发散——不必跳转太多，就能完成一次小范围的信息对照。</p>
+  </section>
+
+  <!-- FAQ 摘要 -->
+  <section class="card" style="margin: 1.8rem 0;">
+    <div class="section-label">FAQ 摘要</div>
+    <div class="faq-item">
+      <div class="faq-q">日常查询一般花多长时间？</div>
+      <div class="faq-a">大部分人停留 3～8 分钟，用于快速对照或扫读条目。如果遇到感兴趣的部分，可能会延长到一刻钟。</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">能否在手机上进行延伸阅读？</div>
+      <div class="faq-a">可以。页面在移动端同样保持卡片式布局，适合单手滑动和逐段浏览。文本字号和间距做了相应适配。</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">信息更新的频率大概是？</div>
+      <div class="faq-a">保持每周有内容补充或修订，不会一次性堆砌。这样每次回来都可能看到新的对照点。</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">延伸阅读和主内容如何区分？</div>
+      <div class="faq-a">主内容放在卡片核心区，延伸阅读通常以段落或边栏形式存在，你可以自由选择阅读深度。</div>
+    </div>
+  </section>
+
+  <!-- 底部链接 -->
+  <footer class="footer-note">
+    <div class="footer-links">
+      <a href="#">对照索引</a>
+      <a href="#">延伸列表</a>
+      <a href="#">常见分类</a>
+      <a href="#">更新日志</a>
+    </div>
+    <p style="margin-top:0.6rem;">
+      回到主页：<a href="https://chinese-yihao.com">壹号娱乐</a> — 从一次查询，到一段安静的对照。
+    </p>
+    <p style="font-size:0.8rem; margin-top:1rem; color:#7e8b98;">&copy; 面向日常的信息窗口 · 保持清晰与克制</p>
+  </footer>
+
+</div>
+</body>
+</html>
